@@ -26,7 +26,6 @@ public class spawn : MonoBehaviour
             creat_obstacle();
             time = 0;
         }
-        print(time);
     }
     void creat_obstacle()
     {

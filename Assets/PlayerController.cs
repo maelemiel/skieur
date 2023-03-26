@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private float Horizontal;
     private float Vertical;
     public Animator animator;
+    private bool start;
     short x = 0;
 
     // Start is called before the first frame update
@@ -24,27 +25,36 @@ public class PlayerController : MonoBehaviour
         speedonladder = 3f;
         jumpforce = 4f;
         is_on_ground = false;
+        start = false;
     }
 
     // Update is called once per frame
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(3);
+        start = true;
+    }
     void Update()
     {
         Horizontal = Input.GetAxisRaw("Horizontal");
         Vertical = Input.GetAxisRaw("Vertical");
         transform.position = transform.position;
-
-        if (is_ladder && Mathf.Abs(Vertical) > 0f) {
-            is_climb = true;
-            animator.SetBool("is_climb", true);
-        } else {
-            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+        StartCoroutine(wait());
+        if (start == true)
+        {
+            if (is_ladder && Mathf.Abs(Vertical) > 0f) {
+                is_climb = true;
+                animator.SetBool("is_climb", true);
+            } else {
+                animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+            }
+            if (Horizontal > 0.1f)
+                rb2D.AddForce(new Vector2(Horizontal * speed, 0f), ForceMode2D.Impulse);
+            else if (Horizontal < -0.1f && x != 1)
+                rb2D.AddForce(new Vector2(Horizontal * speed, 0f), ForceMode2D.Impulse);
+            if (!is_climb && !is_on_ground && Vertical > 0f)
+                rb2D.AddForce(new Vector2(0f, Vertical * jumpforce), ForceMode2D.Impulse);
         }
-        if (Horizontal > 0.1f)
-            rb2D.AddForce(new Vector2(Horizontal * speed, 0f), ForceMode2D.Impulse);
-        else if (Horizontal < -0.1f && x != 1)
-            rb2D.AddForce(new Vector2(Horizontal * speed, 0f), ForceMode2D.Impulse);
-        if (!is_climb && !is_on_ground && Vertical > 0f)
-            rb2D.AddForce(new Vector2(0f, Vertical * jumpforce), ForceMode2D.Impulse);
     }
 
     void FixedUpdate()
