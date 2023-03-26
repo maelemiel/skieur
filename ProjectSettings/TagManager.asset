@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - Ladder
   - Rampe
+  - music
   layers:
   - Default
   - TransparentFX
