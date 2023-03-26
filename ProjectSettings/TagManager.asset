@@ -6,6 +6,7 @@ TagManager:
   tags:
   - spike
   - cube
+  - Platform
   layers:
   - Default
   - TransparentFX
