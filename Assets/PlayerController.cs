@@ -20,23 +20,24 @@ public class PlayerController : MonoBehaviour
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         speed = 0.2f;
-        speedonladder = 0.01f;
-        jumpforce = 3.6f;
+        speedonladder = 3f;
+        jumpforce = 4f;
         is_on_ground = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-
         Horizontal = Input.GetAxisRaw("Horizontal");
         Vertical = Input.GetAxisRaw("Vertical");
         transform.position = transform.position;
 
-        if (is_ladder && Mathf.Abs(Vertical) > 0f)
+        if (is_ladder && Mathf.Abs(Vertical) > 0f) {
             is_climb = true;
+            animator.SetBool("is_climb", true);
+        } else {
+            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+        }
         if (Horizontal > 0.1f || Horizontal < -0.1f)
             rb2D.AddForce(new Vector2(Horizontal * speed, 0f), ForceMode2D.Impulse);
         if (!is_climb && !is_on_ground && Vertical > 0.1f)
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         if (is_climb) {
             rb2D.gravityScale = 0f;
-            rb2D.velocity = new Vector2(rb2D.velocity.x, Vertical * speed * 10);
+            rb2D.velocity = new Vector2(rb2D.velocity.x, Vertical * speedonladder);
         } else {
             rb2D.gravityScale = 10f;
         }
@@ -65,8 +66,10 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Platform")
             is_on_ground = true;
-        if (collision.CompareTag("Ladder"))
+        if (collision.CompareTag("Ladder")) {
+            animator.SetBool("is_climb", false);
             is_ladder = false;
             is_climb = false;
+        }
     }
 }
