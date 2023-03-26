@@ -61,9 +61,12 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Rampe") {
             rb2D.mass = 4f;
             speed = 7f;
+            animator.SetBool("Ski", true);
         }
-        if (collision.CompareTag("Ladder"))
+        if (collision.CompareTag("Ladder")) {
             is_ladder = true;
+            animator.SetBool("is_climb", true);
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -73,6 +76,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Rampe") {
             speed = 0.2f;
             rb2D.mass = 2f;
+            animator.SetBool("Ski", false);
         }
         if (collision.CompareTag("Ladder")) {
             animator.SetBool("is_climb", false);
