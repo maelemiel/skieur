@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private float Horizontal;
     private float Vertical;
     public Animator animator;
+    short x = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,9 @@ public class PlayerController : MonoBehaviour
         } else {
             animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
         }
-        if (Horizontal > 0.1f || Horizontal < -0.1f)
+        if (Horizontal > 0.1f)
+            rb2D.AddForce(new Vector2(Horizontal * speed, 0f), ForceMode2D.Impulse);
+        else if (Horizontal < -0.1f && x != 1)
             rb2D.AddForce(new Vector2(Horizontal * speed, 0f), ForceMode2D.Impulse);
         if (!is_climb && !is_on_ground && Vertical > 0f)
             rb2D.AddForce(new Vector2(0f, Vertical * jumpforce), ForceMode2D.Impulse);
@@ -59,9 +62,10 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Platform" || collision.gameObject.tag == "Rampe")
             is_on_ground = false;
         if (collision.gameObject.tag == "Rampe") {
-            rb2D.mass = 4f;
-            speed = 7f;
+            rb2D.mass = 3f;
+            speed = 5f;
             animator.SetBool("Ski", true);
+            x = 1;
         }
         if (collision.CompareTag("Ladder")) {
             is_ladder = true;
@@ -77,6 +81,7 @@ public class PlayerController : MonoBehaviour
             speed = 0.2f;
             rb2D.mass = 2f;
             animator.SetBool("Ski", false);
+            x = 0;
         }
         if (collision.CompareTag("Ladder")) {
             animator.SetBool("is_climb", false);
