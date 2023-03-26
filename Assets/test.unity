@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 23368155}
   m_Layer: 0
   m_Name: colider4
-  m_TagString: Untagged
+  m_TagString: Rampe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1042,7 +1042,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114513986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.81, y: 10, z: 0}
+  m_LocalPosition: {x: -2.01, y: 5.02, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1134,8 +1134,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.4130195}
-  m_Size: {x: 0.85999995, y: 0.85999995}
+  m_Offset: {x: -0.039016902, y: -0.5725202}
+  m_Size: {x: 0.487774, y: 0.5615002}
   m_Direction: 0
 --- !u!1 &1164295583
 GameObject:
@@ -1369,9 +1369,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1418930060}
   - component: {fileID: 1418930059}
+  - component: {fileID: 1418930061}
   m_Layer: 0
   m_Name: tremplinv2
-  m_TagString: Platform
+  m_TagString: Rampe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1447,6 +1448,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.122, y: -0.026, z: 11.968}
+--- !u!50 &1418930061
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418930058}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: e7580f6caa0641f419d95f13ef58d82e, type: 2}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &1459035212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1506,7 +1528,7 @@ GameObject:
   - component: {fileID: 1522257682}
   m_Layer: 0
   m_Name: colider2
-  m_TagString: Untagged
+  m_TagString: Rampe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1720,7 +1742,7 @@ GameObject:
   - component: {fileID: 1734984281}
   m_Layer: 0
   m_Name: colider3
-  m_TagString: Untagged
+  m_TagString: Rampe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1866,7 +1888,7 @@ GameObject:
   - component: {fileID: 1778977631}
   m_Layer: 0
   m_Name: colider
-  m_TagString: Untagged
+  m_TagString: Rampe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

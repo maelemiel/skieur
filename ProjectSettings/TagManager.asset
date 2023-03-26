@@ -8,6 +8,7 @@ TagManager:
   - cube
   - Platform
   - Ladder
+  - Rampe
   layers:
   - Default
   - TransparentFX

@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Horizontal > 0.1f || Horizontal < -0.1f)
             rb2D.AddForce(new Vector2(Horizontal * speed, 0f), ForceMode2D.Impulse);
-        if (!is_climb && !is_on_ground && Vertical > 0.1f)
+        if (!is_climb && !is_on_ground && Vertical > 0f)
             rb2D.AddForce(new Vector2(0f, Vertical * jumpforce), ForceMode2D.Impulse);
     }
 
@@ -56,16 +56,24 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Platform")
+        if (collision.gameObject.tag == "Platform" || collision.gameObject.tag == "Rampe")
             is_on_ground = false;
+        if (collision.gameObject.tag == "Rampe") {
+            rb2D.mass = 4f;
+            speed = 7f;
+        }
         if (collision.CompareTag("Ladder"))
             is_ladder = true;
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Platform")
+        if (collision.gameObject.tag == "Platform" || collision.gameObject.tag == "Rampe")
             is_on_ground = true;
+        if (collision.gameObject.tag == "Rampe") {
+            speed = 0.2f;
+            rb2D.mass = 2f;
+        }
         if (collision.CompareTag("Ladder")) {
             animator.SetBool("is_climb", false);
             is_ladder = false;
