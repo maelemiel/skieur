@@ -22,9 +22,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
-        speed = 0.2f;
+        speed = 0.5f;
         speedonladder = 3f;
-        jumpforce = 4f;
+        jumpforce = 7f;
         is_on_ground = false;
         start = false;
     }
